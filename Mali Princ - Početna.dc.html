@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&amp;family=Karla:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<style>
+:root { --zelena:#7BC96F; --tamna:#4E9B45; --mekana:#EDF7EA; --zuta:#FFD166; --plava:#5BA8FF; --tekst:#2B2B28; --sivi:#6B6B65; --pad:112px; }
+html,body { margin:0; padding:0; background:#FDFCF7; color:#2B2B28; font-family:'Karla',sans-serif; }
+a { color:var(--tamna); text-decoration:none; }
+a:hover { color:#3B7A34; text-decoration:underline; }
+input,textarea,select { font-family:'Karla',sans-serif; }
+</style>
+</helmet>
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#7BC96F"/><circle cx="50" cy="42" r="16" fill="#FFD166"/><path d="M22 74c8-16 48-16 56 0" stroke="#fff" stroke-width="6" fill="none" stroke-linecap="round"/></svg></template>
+<div style="font-size:18px; line-height:1.6;">
+  <div style="width:0; height:0; overflow:hidden; position:absolute;"><x-import component-from-global-scope="image-slot" from="./image-slot.js" hint-size="0,0"></x-import></div>
+  <svg width="0" height="0" style="position:absolute;"><defs><filter id="crayon" x="-30%" y="-30%" width="160%" height="160%"><feTurbulence type="fractalNoise" baseFrequency="0.06" numOctaves="2" seed="4" result="n"></feTurbulence><feDisplacementMap in="SourceGraphic" in2="n" scale="3"></feDisplacementMap></filter></defs></svg>
+
+  <header style="max-width:1100px; margin:0 auto; padding:20px 24px; display:flex; align-items:center; justify-content:space-between; gap:24px; position:relative;">
+    <div style="display:flex; align-items:center; gap:10px;">
+      <svg width="34" height="34" viewBox="0 0 34 34" fill="none"><circle cx="17" cy="17" r="14" stroke="var(--tamna)" stroke-width="2.5"></circle><circle cx="17" cy="14" r="4" fill="var(--zuta)"></circle><path d="M9 24c2-4 14-4 16 0" stroke="var(--tamna)" stroke-width="2.5" stroke-linecap="round"></path></svg>
+      <span style="font-family:'Baloo 2',sans-serif; font-weight:700; font-size:24px;">Mali Princ</span>
+    </div>
+    <sc-if value="{{ nijeMobilno }}" hint-placeholder-val="{{ true }}">
+      <nav style="display:flex; align-items:center; flex-wrap:wrap; gap:28px; font-weight:500;">
+        <a href="#programi">Programi</a>
+        <a href="#grupe">Grupe</a>
+        <a href="#prostor">Prostor</a>
+        <a href="#lokacija">Lokacija</a>
+        <a href="#upit" style="background:var(--tamna); color:#fff; padding:10px 20px; border-radius:8px;" style-hover="{{ ctaHover }}">Pošaljite upit</a>
+      </nav>
+    </sc-if>
+    <sc-if value="{{ mobilno }}" hint-placeholder-val="{{ false }}">
+      <button onClick="{{ prebaciMeni }}" aria-label="Meni" style="background:none; border:1px solid #E4E2D8; border-radius:8px; padding:10px 12px; cursor:pointer;">
+        <sc-if value="{{ meniZatvoren }}" hint-placeholder-val="{{ true }}">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 12h18M3 18h18" stroke="var(--tamna)" stroke-width="2.5" stroke-linecap="round"></path></svg>
+        </sc-if>
+        <sc-if value="{{ meniOtvoren }}" hint-placeholder-val="{{ false }}">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 5l14 14M19 5 5 19" stroke="var(--tamna)" stroke-width="2.5" stroke-linecap="round"></path></svg>
+        </sc-if>
+      </button>
+    </sc-if>
+    <sc-if value="{{ meniOtvoren }}" hint-placeholder-val="{{ false }}">
+      <nav style="position:absolute; top:100%; left:16px; right:16px; z-index:50; background:#fff; border:1px solid #E4E2D8; border-radius:12px; padding:12px; display:flex; flex-direction:column; gap:4px; font-weight:700; font-size:18px;">
+        <a href="#programi" onClick="{{ zatvoriMeni }}" style="padding:12px 16px; border-radius:8px;" style-hover="{{ stavkaHover }}">Programi</a>
+        <a href="#grupe" onClick="{{ zatvoriMeni }}" style="padding:12px 16px; border-radius:8px;" style-hover="{{ stavkaHover }}">Grupe</a>
+        <a href="#prostor" onClick="{{ zatvoriMeni }}" style="padding:12px 16px; border-radius:8px;" style-hover="{{ stavkaHover }}">Prostor</a>
+        <a href="#lokacija" onClick="{{ zatvoriMeni }}" style="padding:12px 16px; border-radius:8px;" style-hover="{{ stavkaHover }}">Lokacija</a>
+        <a href="#upit" onClick="{{ zatvoriMeni }}" style="background:var(--tamna); color:#fff; padding:12px 16px; border-radius:8px; text-align:center; margin-top:8px;">Pošaljite upit</a>
+      </nav>
+    </sc-if>
+  </header>
+
+  
+
+  <section style="max-width:1100px; margin:0 auto; padding:72px 24px var(--pad); display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:56px; align-items:center;">
+    <div>
+      <div style="display:flex; align-items:center; gap:12px; margin:0 0 16px;">
+        <svg width="44" height="44" viewBox="0 0 70 70" fill="none" style="filter:url(#crayon); transform:rotate(-8deg);"><circle cx="35" cy="35" r="13" stroke="#E9AE2E" stroke-width="3"></circle><path d="M35 8v9M35 53v9M8 35h9M53 35h9M16 16l6 6M48 48l6 6M54 16l-6 6M22 48l-6 6" stroke="#E9AE2E" stroke-width="3" stroke-linecap="round"></path></svg>
+        <p style="margin:0; color:var(--tamna); font-weight:700; letter-spacing:0.04em; text-transform:uppercase; font-size:15px;">Vrtić u Zemunu, od 2009.</p>
+      </div>
+      <h1 style="font-family:'Baloo 2',sans-serif; font-weight:700; font-size:clamp(38px,4.5vw,58px); line-height:1.1; margin:0 0 20px;">Vrtić u koji deca ujutru ulaze trčeći</h1>
+      <p style="max-width:32em; margin:0 0 32px; color:var(--sivi); font-size:19px;">Primamo decu od 1 do 7 godina, u grupe od najviše 12. Ceo dan igre, učenja i dvorišta, uz vaspitače koji rade sa decom duže od 15 godina.</p>
+      <div style="display:flex; align-items:center; gap:16px; flex-wrap:wrap;">
+        <a href="#upit" style="background:var(--tamna); color:#fff; padding:14px 28px; border-radius:8px; font-weight:700; font-size:18px;">Pošaljite upit</a>
+        <a href="tel:+381113164287" style="padding:14px 20px; font-weight:700; border:2px solid var(--tamna); border-radius:8px;">011 316 42 87</a>
+      </div>
+      <p style="margin:20px 0 0; font-size:15px; color:var(--sivi);">Javljamo se isti dan, radnim danom do {{ radnoDo }}.</p>
+    </div>
+    <div style="position:relative; height:440px;">
+      <div style="position:absolute; top:-20px; left:-20px; width:72px; height:72px; border-radius:50%; background:var(--zuta);"></div>
+      <div style="position: absolute; bottom: -41px; right: -15px; width: 52px; height: 52px; border-radius: 50%; background: var(--plava)"></div>
+      <div style="position: absolute; top: 60px; right: -20px; width: 26px; height: 26px; border-radius: 50%; background: var(--zelena)"></div>
+      <div style="transform:rotate(1.2deg);">
+        <image-slot id="hero-dvoriste" shape="rounded" radius="20" placeholder="FOTOGRAFIJA: deca u dvorištu vrtića" style="width:525px; max-width:100%; height:443px"></image-slot>
+      </div>
+    </div>
+  </section><section style="border-top:1px solid #E4E2D8; border-bottom:1px solid #E4E2D8; background:#fff;">
+    <div style="max-width:1100px; margin:0 auto; padding:28px 24px; display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:24px; text-align:center;">
+      <div><div style="width:10px; height:10px; border-radius:50%; background:var(--zelena); margin:0 auto 10px;"></div><div style="font-family:'Baloo 2',sans-serif; font-weight:700; font-size:26px; color:var(--tamna);">{{ radnoVreme }}</div><div style="color:var(--sivi); font-size:15px;">radno vreme, radnim danima</div></div>
+      <div><div style="width:10px; height:10px; border-radius:50%; background:var(--zuta); margin:0 auto 10px;"></div><div style="font-family:'Baloo 2',sans-serif; font-weight:700; font-size:26px; color:var(--tamna);">1 do 7 godina</div><div style="color:var(--sivi); font-size:15px;">uzrast dece koju primamo</div></div>
+      <div><div style="width:10px; height:10px; border-radius:50%; background:var(--plava); margin:0 auto 10px;"></div><div style="font-family:'Baloo 2',sans-serif; font-weight:700; font-size:26px; color:var(--tamna);">do 12 dece</div><div style="color:var(--sivi); font-size:15px;">u jednoj grupi</div></div>
+      <div><div style="width:10px; height:10px; border-radius:50%; background:var(--zelena); margin:0 auto 10px;"></div><div style="font-family:'Baloo 2',sans-serif; font-weight:700; font-size:26px; color:var(--tamna);">4 obroka</div><div style="color:var(--sivi); font-size:15px;">spremamo u našoj kuhinji</div></div>
+    </div>
+  </section>
+
+  
+
+  <section id="programi" style="position:relative; max-width:1100px; margin:0 auto; padding:var(--pad) 24px;">
+    <svg width="90" height="90" viewBox="0 0 90 90" fill="none" style="position: absolute; top: 93px; right: 40px; filter: url(#crayon); transform: rotate(10deg); width: 101px; height: 113px"><circle cx="45" cy="45" r="28" stroke="var(--tamna)" stroke-width="3"></circle><path d="M45 17c12 8 12 48 0 56M20 32c14 9 36 9 50 0M20 58c14-9 36-9 50 0" stroke="var(--tamna)" stroke-width="3" stroke-linecap="round"></path></svg>
+    <svg width="52" height="52" viewBox="0 0 60 60" fill="none" style="position: absolute; top: 164px; filter: url(#crayon); transform: rotate(-12deg); width: 88px; height: 76px; left: 857px"><path d="M30 6l7 15 17 2-12 12 3 17-15-8-15 8 3-17L6 23l17-2 7-15Z" stroke="#E9AE2E" stroke-width="3" stroke-linejoin="round"></path></svg>
+    <svg width="100" height="48" viewBox="0 0 100 48" fill="none" style="position: absolute; filter: url(#crayon); transform: rotate(-8deg); left: 458px; top: 155px"><rect x="30" y="12" width="58" height="24" rx="4" stroke="#3D6FCC" stroke-width="3"></rect><path d="M30 12 10 24l20 12" stroke="#3D6FCC" stroke-width="3" stroke-linejoin="round"></path><path d="M42 12v24M78 12v24" stroke="#3D6FCC" stroke-width="3"></path></svg>
+    <svg width="70" height="70" viewBox="0 0 74 74" fill="none" style="position: absolute; left: 702px; filter: url(#crayon); transform: rotate(6deg); top: 62px; width: 92px; height: 91px"><path d="M37 8 62 37 37 66 12 37 37 8Z" stroke="#7BC96F" stroke-width="3" stroke-linejoin="round"></path><path d="M37 8v58M12 37h50" stroke="#7BC96F" stroke-width="3"></path><path d="M37 66c-2 6-8 8-12 6" stroke="#E9AE2E" stroke-width="3" stroke-linecap="round"></path></svg>
+    <div style="display:inline-block; margin:0 0 16px;">
+      <h2 style="font-family:'Baloo 2',sans-serif; font-weight:700; font-size:clamp(30px,3.5vw,40px); margin:0 0 4px;">Šta deca kod nas rade</h2>
+      <svg height="12" viewBox="0 0 424 12" fill="none" preserveAspectRatio="none" style="display:block; width:100%;"><path d="M2 8c12-8 23 8 35 0s23 8 35 0 23 8 35 0 23 8 35 0 23 8 35 0 23 8 35 0 23 8 35 0 23 8 35 0 23 8 35 0 23 8 35 0 23 8 35 0 22 8 35 0" stroke="var(--zuta)" stroke-width="3" stroke-linecap="round"></path></svg>
+    </div><p style="max-width:34em; margin:0 0 48px; color:var(--sivi);">Program pravimo po uzrastu. Mlađi najviše kroz igru, predškolci uz pripremu za školu. Napolju smo svaki dan kad ne pada kiša.</p>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:20px;">
+      <div style="border:1px solid #E4E2D8; border-radius:18px; padding:28px; background:#fff;">
+        <div style="width:56px; height:56px; border-radius:50%; background:var(--mekana); display:flex; align-items:center; justify-content:center;"><svg width="30" height="30" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="12" stroke="var(--tamna)" stroke-width="2"></circle><path d="M16 4v24M4 16h24" stroke="var(--tamna)" stroke-width="2"></path></svg></div>
+        <h3 style="font-family: 'Baloo 2',sans-serif; font-weight: 600; font-size: 22px; margin: 16px 0 8px; color: #4D9B45">Igra i dvorište</h3>
+        <p style="margin:0; color:var(--sivi); font-size:16px;">Ograđeno dvorište od 400 kvadrata, sa mekanom podlogom i hladom. Boravak napolju je deo svakog dana, i zimi.</p>
+      </div>
+      <div style="border:1px solid #E4E2D8; border-radius:18px; padding:28px; background:#fff;">
+        <div style="width:56px; height:56px; border-radius:50%; background:#FFF3D6; display:flex; align-items:center; justify-content:center;"><svg width="30" height="30" viewBox="0 0 32 32" fill="none"><rect x="5" y="7" width="22" height="18" rx="2" stroke="#C98A1B" stroke-width="2"></rect><path d="M16 7v18" stroke="#C98A1B" stroke-width="2"></path></svg></div>
+        <h3 style="font-family: 'Baloo 2',sans-serif; font-weight: 600; font-size: 22px; margin: 16px 0 8px; color: #E9AE2E">Priprema za školu</h3>
+        <p style="margin:0; color:var(--sivi); font-size:16px;">Predškolci uče slova, brojeve i rad u grupi. Program vodi vaspitač sa licencom za pripremni predškolski program.</p>
+      </div>
+      <div style="border:1px solid #E4E2D8; border-radius:18px; padding:28px; background:#fff;">
+        <div style="width:56px; height:56px; border-radius:50%; background:#E3EFFF; display:flex; align-items:center; justify-content:center;"><svg width="30" height="30" viewBox="0 0 32 32" fill="none"><path d="M6 24V10l10-4 10 4v14" stroke="#3D6FCC" stroke-width="2" stroke-linejoin="round"></path><circle cx="16" cy="17" r="3" stroke="#3D6FCC" stroke-width="2"></circle></svg></div>
+        <h3 style="font-family: 'Baloo 2',sans-serif; font-weight: 600; font-size: 22px; margin: 16px 0 8px; color: #3D70CC">Engleski svaki dan</h3>
+        <p style="margin:0; color:var(--sivi); font-size:16px;">Kratko i kroz pesme, 20 minuta dnevno od treće godine. Deca do polaska u školu razumeju jednostavne rečenice.</p>
+      </div>
+      <div style="border:1px solid #E4E2D8; border-radius:18px; padding:28px; background:#fff;">
+        <div style="width:56px; height:56px; border-radius:50%; background:var(--mekana); display:flex; align-items:center; justify-content:center;"><svg width="30" height="30" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="11" stroke="var(--tamna)" stroke-width="2"></circle><path d="M16 5c4 3 4 19 0 22M5 16h22" stroke="var(--tamna)" stroke-width="2"></path></svg></div>
+        <h3 style="font-family: 'Baloo 2',sans-serif; font-weight: 600; font-size: 22px; margin: 16px 0 8px; color: #4D9B45">Sport</h3>
+        <p style="margin:0; color:var(--sivi); font-size:16px;">Utorkom i četvrtkom trener vodi vežbanje u sali: poligoni, lopte, osnovna gimnastika. Sve prilagođeno uzrastu.</p>
+      </div>
+      <div style="border:1px solid #E4E2D8; border-radius:18px; padding:28px; background:#fff;">
+        <div style="width:56px; height:56px; border-radius:50%; background:#FFF3D6; display:flex; align-items:center; justify-content:center;"><svg width="30" height="30" viewBox="0 0 32 32" fill="none"><path d="M8 26c0-8 4-18 16-20-2 12-8 18-16 20Z" stroke="#C98A1B" stroke-width="2" stroke-linejoin="round"></path></svg></div>
+        <h3 style="font-family: 'Baloo 2',sans-serif; font-weight: 600; font-size: 22px; margin: 16px 0 8px; color: #E9AE2E">Kreativne radionice</h3>
+        <p style="margin:0; color:var(--sivi); font-size:16px;">Crtanje, glina, pozorište senki. Radove deca nose kući petkom, a jednom godišnje pravimo izložbu za roditelje.</p>
+      </div>
+      <div style="border:1px solid #E4E2D8; border-radius:18px; padding:28px; background:#fff;">
+        <div style="width:56px; height:56px; border-radius:50%; background:#E3EFFF; display:flex; align-items:center; justify-content:center;"><svg width="30" height="30" viewBox="0 0 32 32" fill="none"><path d="M12 24V7l14-3v17" stroke="#3D6FCC" stroke-width="2" stroke-linejoin="round"></path><circle cx="9" cy="24" r="3" stroke="#3D6FCC" stroke-width="2"></circle><circle cx="23" cy="21" r="3" stroke="#3D6FCC" stroke-width="2"></circle></svg></div>
+        <h3 style="font-family: 'Baloo 2',sans-serif; font-weight: 600; font-size: 22px; margin: 16px 0 8px; color: #3D70CC">Muzika</h3>
+        <p style="margin:0; color:var(--sivi); font-size:16px;">Pevamo svaki dan, a jednom nedeljno dolazi muzički saradnik sa gitarom. Za Novu godinu deca spremaju priredbu.</p>
+      </div>
+    </div>
+  </section><section style="background:var(--mekana);">
+    <div style="max-width:1100px; margin:0 auto; padding:var(--pad) 24px; display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:56px;">
+      <div>
+        <h2 style="font-family:'Baloo 2',sans-serif; font-weight:700; font-size:clamp(30px,3.5vw,40px); margin:0 0 12px;">Kako izgleda dan</h2>
+        <p style="max-width:30em; color:var(--sivi); margin:0;">Deci prija kad znaju šta sledi, pa se rasporeda držimo. Dovođenje je moguće do 9, a po dete možete doći kad vam odgovara.</p>
+        <div style="display:flex; align-items:flex-end; gap:28px; margin-top:32px; flex-wrap:wrap;">
+          <svg width="86" height="86" viewBox="0 0 90 90" fill="none" style="filter: url(#crayon); transform: rotate(-6deg); width: 112px; height: 106px"><circle cx="45" cy="45" r="30" stroke="#3D6FCC" stroke-width="3"></circle><path d="M45 27v18l12 8" stroke="#3D6FCC" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path><path d="M45 9v5M45 76v5M9 45h5M76 45h5" stroke="#E9AE2E" stroke-width="3" stroke-linecap="round"></path></svg>
+          <svg width="64" height="64" viewBox="0 0 70 70" fill="none" style="filter: url(#crayon); transform: rotate(8deg); width: 136px; height: 107px"><circle cx="35" cy="35" r="16" stroke="#E9AE2E" stroke-width="3"></circle><path d="M35 10v6M35 54v6M10 35h6M54 35h6M17 17l5 5M48 48l5 5M53 17l-5 5M22 48l-5 5" stroke="#E9AE2E" stroke-width="3" stroke-linecap="round"></path></svg><svg width="58" height="58" viewBox="0 0 64 64" fill="none" style="filter: url(#crayon); transform: rotate(-10deg); width: 106px; height: 96px"><path d="M42 8a24 24 0 1 0 14 40A28 28 0 0 1 42 8Z" stroke="#3D6FCC" stroke-width="3" stroke-linejoin="round"></path><path d="M50 14v8M46 18h8M14 10v6M11 13h6" stroke="#E9AE2E" stroke-width="3" stroke-linecap="round"></path></svg>
+          
+        </div>
+      </div>
+      <div style="display:grid; gap:0;">
+        <div style="display:flex; gap:20px; padding:14px 0; border-bottom:1px solid #D8E8D3;"><span style="width:10px; height:10px; border-radius:50%; background:var(--zuta); flex-shrink:0; margin-top:9px;"></span><span style="font-weight:700; color:var(--tamna); width:86px; flex-shrink:0;">6.30</span><span>prijem i slobodna igra</span></div>
+        <div style="display:flex; gap:20px; padding:14px 0; border-bottom:1px solid #D8E8D3;"><span style="width:10px; height:10px; border-radius:50%; background:var(--zuta); flex-shrink:0; margin-top:9px;"></span><span style="font-weight:700; color:var(--tamna); width:86px; flex-shrink:0;">8.00</span><span>doručak</span></div>
+        <div style="display:flex; gap:20px; padding:14px 0; border-bottom:1px solid #D8E8D3;"><span style="width:10px; height:10px; border-radius:50%; background:var(--zuta); flex-shrink:0; margin-top:9px;"></span><span style="font-weight:700; color:var(--tamna); width:86px; flex-shrink:0;">9.00</span><span>aktivnosti po programu grupe</span></div>
+        <div style="display:flex; gap:20px; padding:14px 0; border-bottom:1px solid #D8E8D3;"><span style="width:10px; height:10px; border-radius:50%; background:var(--zuta); flex-shrink:0; margin-top:9px;"></span><span style="font-weight:700; color:var(--tamna); width:86px; flex-shrink:0;">10.30</span><span>dvorište i užina</span></div>
+        <div style="display:flex; gap:20px; padding:14px 0; border-bottom:1px solid #D8E8D3;"><span style="width:10px; height:10px; border-radius:50%; background:var(--zuta); flex-shrink:0; margin-top:9px;"></span><span style="font-weight:700; color:var(--tamna); width:86px; flex-shrink:0;">12.00</span><span>ručak</span></div>
+        <div style="display:flex; gap:20px; padding:14px 0; border-bottom:1px solid #D8E8D3;"><span style="width:10px; height:10px; border-radius:50%; background:var(--zuta); flex-shrink:0; margin-top:9px;"></span><span style="font-weight:700; color:var(--tamna); width:86px; flex-shrink:0;">13.00</span><span>spavanje za mlađe, mirne aktivnosti za predškolce</span></div>
+        <div style="display:flex; gap:20px; padding:14px 0; border-bottom:1px solid #D8E8D3;"><span style="width:10px; height:10px; border-radius:50%; background:var(--zuta); flex-shrink:0; margin-top:9px;"></span><span style="font-weight:700; color:var(--tamna); width:86px; flex-shrink:0;">15.30</span><span>užina</span></div>
+        <div style="display:flex; gap:20px; padding:14px 0;"><span style="width:10px; height:10px; border-radius:50%; background:var(--zuta); flex-shrink:0; margin-top:9px;"></span><span style="font-weight:700; color:var(--tamna); width:86px; flex-shrink:0;">16.00</span><span>igra do polaska kući</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="grupe" style="position:relative; max-width:1100px; margin:0 auto; padding:var(--pad) 24px;">
+    <svg width="110" height="86" viewBox="0 0 110 86" fill="none" style="position:absolute; top:calc(var(--pad) - 6px); right:40px; filter:url(#crayon);"><rect x="8" y="42" width="36" height="36" rx="3" stroke="var(--tamna)" stroke-width="3" transform="rotate(-4 26 60)"></rect><rect x="56" y="44" width="36" height="36" rx="3" stroke="#E9AE2E" stroke-width="3" transform="rotate(5 74 62)"></rect><rect x="32" y="6" width="36" height="36" rx="3" stroke="#3D6FCC" stroke-width="3" transform="rotate(-7 50 24)"></rect><text x="20" y="70" font-family="Baloo 2" font-size="20" font-weight="700" fill="var(--tamna)" transform="rotate(-4 26 60)">A</text><text x="68" y="72" font-family="Baloo 2" font-size="20" font-weight="700" fill="#E9AE2E" transform="rotate(5 74 62)">B</text><text x="44" y="34" font-family="Baloo 2" font-size="20" font-weight="700" fill="#3D6FCC" transform="rotate(-7 50 24)">V</text></svg>
+    <h2 style="font-family:'Baloo 2',sans-serif; font-weight:700; font-size:clamp(30px,3.5vw,40px); margin:0 0 12px;">Grupe</h2>
+    <p style="max-width:34em; margin:0 0 48px; color:var(--sivi);">Tri grupe, podeljene po uzrastu. Svaku vode dva vaspitača sa licencom Ministarstva prosvete, a medicinska sestra je u vrtiću ceo dan.</p>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:20px;">
+      <div style="border:1px solid #E4E2D8; border-radius:18px; padding:28px; background:#fff; border-top:4px solid var(--zelena);">
+        <h3 style="font-family:'Baloo 2',sans-serif; font-weight:600; font-size:22px; margin:0 0 4px;">Jaslice</h3>
+        <p style="margin:0 0 12px; font-weight:700; color:var(--tamna);">1 do 3 godine · do 10 dece</p>
+        <p style="margin:0; color:var(--sivi); font-size:16px;">Uz dva vaspitača u jaslicama je i medicinska sestra. Ritam spavanja i obroka prilagođavamo svakom detetu.</p>
+      </div>
+      <div style="border:1px solid #E4E2D8; border-radius:18px; padding:28px; background:#fff; border-top:4px solid var(--zuta);">
+        <h3 style="font-family:'Baloo 2',sans-serif; font-weight:600; font-size:22px; margin:0 0 4px;">Mlađa grupa</h3>
+        <p style="margin:0 0 12px; font-weight:700; color:var(--tamna);">3 do 5 godina · do 12 dece</p>
+        <p style="margin:0; color:var(--sivi); font-size:16px;">Najviše igre i dvorišta. Tu kreću engleski, sport i radionice, sve u kratkim blokovima od po 20 minuta.</p>
+      </div>
+      <div style="border:1px solid #E4E2D8; border-radius:18px; padding:28px; background:#fff; border-top:4px solid var(--plava);">
+        <h3 style="font-family:'Baloo 2',sans-serif; font-weight:600; font-size:22px; margin:0 0 4px;">Predškolska grupa</h3>
+        <p style="margin:0 0 12px; font-weight:700; color:var(--tamna);">5 do 7 godina · do 14 dece</p>
+        <p style="margin:0; color:var(--sivi); font-size:16px;">Pripremni predškolski program koji zamenjuje obavezni u državnom vrtiću. Dobijate potvrdu za upis u školu.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="prostor" style="background:#fff; border-top:1px solid #E4E2D8; border-bottom:1px solid #E4E2D8;">
+    <div style="position:relative; max-width:1100px; margin:0 auto; padding:var(--pad) 24px;">
+      <svg width="96" height="90" viewBox="0 0 96 90" fill="none" style="position:absolute; top:calc(var(--pad) - 8px); right:40px; filter:url(#crayon); transform:rotate(4deg);"><path d="M16 44 48 16l32 28M24 40v38h48V40" stroke="var(--tamna)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path><rect x="40" y="56" width="16" height="22" stroke="#E9AE2E" stroke-width="3"></rect><path d="M60 24v-8h8v14" stroke="var(--tamna)" stroke-width="3" stroke-linecap="round"></path></svg>
+      <h2 style="font-family:'Baloo 2',sans-serif; font-weight:700; font-size:clamp(30px,3.5vw,40px); margin:0 0 12px;">Prostor i sigurnost</h2>
+      <p style="max-width:34em; margin:0 0 48px; color:var(--sivi);">Kuća sa dvorištem, bez spratova i stepenica za decu. Ulaz se otključava karticom, a dvorište je ograđeno i pod video nadzorom. Najbolje je da dođete i sve vidite uživo.</p>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:20px; grid-auto-rows:300px;">
+        <image-slot id="prostor-dvoriste" shape="rounded" radius="12" placeholder="FOTOGRAFIJA: dvorište sa igralištem"></image-slot>
+        <image-slot id="prostor-soba" shape="rounded" radius="12" placeholder="FOTOGRAFIJA: soba za boravak"></image-slot>
+        <image-slot id="prostor-trpezarija" shape="rounded" radius="12" placeholder="FOTOGRAFIJA: trpezarija"></image-slot>
+      </div>
+    </div>
+  </section>
+
+  <section style="max-width:1100px; margin:0 auto; padding:var(--pad) 24px; display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:56px; align-items:center;">
+    <div style="height:400px;">
+      <image-slot id="tim-foto" shape="rounded" radius="16" placeholder="FOTOGRAFIJA: tim vaspitača"></image-slot>
+    </div>
+    <div>
+      <h2 style="font-family:'Baloo 2',sans-serif; font-weight:700; font-size:clamp(30px,3.5vw,40px); margin:0 0 12px;">Ko brine o deci</h2>
+      <p style="max-width:32em; color:var(--sivi); margin:0 0 16px;">Osam vaspitača, svi sa licencom i završenim fakultetom ili višom školom za vaspitače. Pet ih je u vrtiću duže od deset godina, pa deca često dobiju istog vaspitača kog je imao stariji brat ili sestra.</p>
+      <p style="max-width:32em; color:var(--sivi); margin:0 0 16px;">Medicinska sestra ujutru pregleda decu na prijemu i vodi računa o terapijama i alergijama. Kuvarica sprema doručak, dve užine i ručak u našoj kuhinji, po nedeljnom jelovniku koji roditelji dobijaju unapred.</p>
+      <p style="max-width:32em; color:var(--sivi); margin:0;">Jelovnik menjamo za decu sa alergijama i posebnom ishranom, bez doplate.</p>
+      <div style="display:flex; gap:20px; align-items:flex-end; margin-top:28px;">
+        <svg width="64" height="60" viewBox="0 0 70 66" fill="none" style="filter:url(#crayon); transform:rotate(-7deg);"><path d="M35 58C15 43 8 28 17 20c7-6 14-1 18 5 4-6 11-11 18-5 9 8 2 23-18 38Z" stroke="#D9564A" stroke-width="3" stroke-linejoin="round"></path></svg>
+        <svg width="56" height="60" viewBox="0 0 60 66" fill="none" style="filter:url(#crayon); transform:rotate(6deg);"><path d="M30 18c-4-4-12-6-17 0-7 8-3 26 6 34 4 4 8 4 11 2 3 2 7 2 11-2 9-8 13-26 6-34-5-6-13-4-17 0Z" stroke="var(--tamna)" stroke-width="3" stroke-linejoin="round"></path><path d="M30 18c0-6 2-10 6-13" stroke="var(--tamna)" stroke-width="3" stroke-linecap="round"></path><path d="M36 12c5-5 11-5 14-2-2 5-8 7-14 5" stroke="#7BC96F" stroke-width="3" stroke-linejoin="round"></path></svg>
+      </div>
+    </div>
+  </section>
+
+  <section id="lokacija" style="background:var(--mekana);">
+    <div style="max-width:1100px; margin:0 auto; padding:var(--pad) 24px; display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:56px; align-items:center;">
+      <div>
+        <div style="display:flex; align-items:center; gap:16px; margin:0 0 12px;">
+          <h2 style="font-family:'Baloo 2',sans-serif; font-weight:700; font-size:clamp(30px,3.5vw,40px); margin:0;">Gde smo</h2>
+          <svg width="44" height="52" viewBox="0 0 50 60" fill="none" style="filter:url(#crayon); transform:rotate(8deg);"><path d="M25 6C15 6 8 13 8 22c0 12 17 32 17 32s17-20 17-32c0-9-7-16-17-16Z" stroke="#D9564A" stroke-width="3" stroke-linejoin="round"></path><circle cx="25" cy="22" r="6" stroke="#D9564A" stroke-width="3"></circle></svg>
+        </div>
+        <p style="max-width:32em; color:var(--sivi); margin:0 0 24px;">U mirnoj ulici u Zemunu, pet minuta pešaka od Glavne ulice. Ispred vrtića ima mesta za kratko parkiranje kad dovodite dete.</p>
+        <div style="display:grid; gap:12px; font-size:17px;">
+          <div style="display:flex; gap:12px; align-items:baseline;"><span style="font-weight:700; width:120px; flex-shrink:0;">Adresa</span><span>Cara Dušana 41, Zemun</span></div>
+          <div style="display:flex; gap:12px; align-items:baseline;"><span style="font-weight:700; width:120px; flex-shrink:0;">Radno vreme</span><span>radnim danima {{ radnoVreme }}</span></div>
+          <div style="display:flex; gap:12px; align-items:baseline;"><span style="font-weight:700; width:120px; flex-shrink:0;">Telefon</span><a href="tel:+381113164287">011 316 42 87</a></div>
+          <div style="display:flex; gap:12px; align-items:baseline;"><span style="font-weight:700; width:120px; flex-shrink:0;">E-mail</span><a href="mailto:upis@maliprinc.rs">upis@maliprinc.rs</a></div>
+        </div>
+      </div>
+      <div style="height:340px;">
+        <image-slot id="mapa" shape="rounded" radius="12" placeholder="MAPA ili FOTOGRAFIJA ULAZA U VRTIĆ"></image-slot>
+      </div>
+    </div>
+  </section>
+
+  <section id="upit" style="position:relative; max-width:1100px; margin:0 auto; padding:var(--pad) 24px;">
+    <svg width="100" height="76" viewBox="0 0 100 76" fill="none" style="position:absolute; top:calc(var(--pad) - 4px); right:56px; filter:url(#crayon); transform:rotate(-6deg);"><path d="M8 38 88 10 60 66 46 46 8 38Z" stroke="#3D6FCC" stroke-width="3" stroke-linejoin="round"></path><path d="M46 46 88 10" stroke="#3D6FCC" stroke-width="3" stroke-linecap="round"></path><path d="M14 58c6-2 10-2 14 0M10 68c8-3 14-3 20 0" stroke="#E9AE2E" stroke-width="3" stroke-linecap="round"></path></svg>
+    <div style="max-width:640px; margin:0 auto;">
+      <h2 style="font-family:'Baloo 2',sans-serif; font-weight:700; font-size:clamp(30px,3.5vw,40px); margin:0 0 12px; text-align:center;">Pošaljite upit</h2>
+      <div style="text-align:center; margin:0 0 16px;">
+        <div style="display:inline-block;">
+          <span style="font-family:'Baloo 2',sans-serif; font-weight:700; font-size:clamp(30px,3.5vw,40px); visibility:hidden; display:block; height:0; overflow:hidden;">Pošaljite upit</span>
+          <svg height="12" viewBox="0 0 247 12" fill="none" preserveAspectRatio="none" style="display:block; width:100%;"><path d="M2 8c12-8 23 8 35 0s23 8 35 0 23 8 35 0 23 8 35 0 23 8 35 0 23 8 35 0 22 8 35 0" stroke="var(--zuta)" stroke-width="3" stroke-linecap="round"></path></svg>
+        </div>
+      </div>
+      <p style="color:var(--sivi); margin:0 0 40px; text-align:center;">Napišite nam uzrast deteta i kada biste želeli da dođete da vidite prostor. Odgovaramo isti dan, radnim danom do {{ radnoDo }}.</p>
+      <sc-if value="{{ poslato }}" hint-placeholder-val="{{ false }}">
+        <div style="border:1px solid var(--zelena); background:var(--mekana); border-radius:12px; padding:32px; text-align:center;">
+          <p style="font-family:'Baloo 2',sans-serif; font-weight:600; font-size:22px; margin:0 0 8px;">Upit je poslat</p>
+          <p style="margin:0; color:var(--sivi);">Hvala. Javljamo se telefonom ili mejlom u toku dana.</p>
+        </div>
+      </sc-if>
+      <sc-if value="{{ nijePoslato }}" hint-placeholder-val="{{ true }}">
+        <form onSubmit="{{ posalji }}" style="display:grid; gap:20px;">
+          <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:20px;">
+            <label style="display:grid; gap:6px; font-weight:700; font-size:15px;">Vaše ime
+              <input required="required" type="text" name="ime" style="border:1px solid #C9C7BC; border-radius:8px; padding:12px 14px; font-size:17px; background:#fff;">
+            </label>
+            <label style="display:grid; gap:6px; font-weight:700; font-size:15px;">Telefon ili e-mail
+              <input required="required" type="text" name="kontakt" style="border:1px solid #C9C7BC; border-radius:8px; padding:12px 14px; font-size:17px; background:#fff;">
+            </label>
+          </div>
+          <label style="display:grid; gap:6px; font-weight:700; font-size:15px;">Uzrast deteta
+            <select name="uzrast" style="border:1px solid #C9C7BC; border-radius:8px; padding:12px 14px; font-size:17px; background:#fff;">
+              <option>1 do 3 godine</option>
+              <option>3 do 5 godina</option>
+              <option>5 do 7 godina</option>
+            </select>
+          </label>
+          <label style="display:grid; gap:6px; font-weight:700; font-size:15px;">Poruka
+            <textarea name="poruka" rows="4" placeholder="Na primer: kada možemo da dođemo da vidimo vrtić" style="border:1px solid #C9C7BC; border-radius:8px; padding:12px 14px; font-size:17px; background:#fff; resize:vertical;"></textarea>
+          </label>
+          <button type="submit" style="background:var(--tamna); color:#fff; border:none; border-radius:8px; padding:16px; font-size:18px; font-weight:700; cursor:pointer; font-family:'Karla',sans-serif;" style-hover="{{ ctaHover }}">Pošaljite upit</button>
+        </form>
+      </sc-if>
+    </div>
+  </section>
+
+  <footer style="border-top:1px solid #E4E2D8;">
+    <div style="max-width:1100px; margin:0 auto; padding:32px 24px; display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap; color:var(--sivi); font-size:15px;">
+      <span style="font-family:'Baloo 2',sans-serif; font-weight:700; font-size:18px; color:var(--tekst);">Mali Princ</span>
+      <span>Cara Dušana 41, Zemun · <a href="tel:+381113164287">011 316 42 87</a> · <a href="mailto:upis@maliprinc.rs">upis@maliprinc.rs</a></span>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440},&quot;paleta&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:[&quot;#7BC96F&quot;,&quot;#4E9B45&quot;],&quot;tsType&quot;:&quot;string[]&quot;,&quot;options&quot;:[[&quot;#7BC96F&quot;,&quot;#4E9B45&quot;],[&quot;#5BA8FF&quot;,&quot;#3D6FCC&quot;],[&quot;#FFD166&quot;,&quot;#C98A1B&quot;]],&quot;section&quot;:&quot;Izgled&quot;},&quot;radnoVreme&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;6.30 do 17.30&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Podaci&quot;},&quot;kompaktno&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Izgled&quot;}}">
+class Component extends DCLogic {
+  state = { poslato: false, meniOtvoren: false, mobilno: typeof window !== 'undefined' && window.innerWidth < 768 };
+  primeniPaletu() {
+    const p = this.props.paleta;
+    if (Array.isArray(p) && p.length >= 2) {
+      const r = document.documentElement.style;
+      r.setProperty('--zelena', p[0]);
+      r.setProperty('--tamna', p[1]);
+    }
+    document.documentElement.style.setProperty('--pad', (this.props.kompaktno ? 72 : 112) + 'px');
+  }
+  componentDidMount() {
+    this.primeniPaletu();
+    this._mq = window.matchMedia('(max-width: 767px)');
+    this._naPromenu = () => this.setState({ mobilno: this._mq.matches, meniOtvoren: false });
+    this._mq.addEventListener('change', this._naPromenu);
+    this.setState({ mobilno: this._mq.matches });
+  }
+  componentWillUnmount() { if (this._mq) this._mq.removeEventListener('change', this._naPromenu); }
+  componentDidUpdate() { this.primeniPaletu(); }
+  renderVals() {
+    const radnoVreme = this.props.radnoVreme ?? '6.30 do 17.30';
+    return {
+      radnoVreme,
+      radnoDo: radnoVreme.split(' do ')[1] ?? '17.30',
+      poslato: this.state.poslato,
+      mobilno: this.state.mobilno,
+      nijeMobilno: !this.state.mobilno,
+      meniOtvoren: this.state.mobilno && this.state.meniOtvoren,
+      meniZatvoren: !this.state.meniOtvoren,
+      prebaciMeni: () => this.setState(s => ({ meniOtvoren: !s.meniOtvoren })),
+      zatvoriMeni: () => this.setState({ meniOtvoren: false }),
+      stavkaHover: { background: 'var(--mekana)' },
+      nijePoslato: !this.state.poslato,
+      posalji: (e) => { e.preventDefault(); this.setState({ poslato: true }); },
+      ctaHover: { background: '#3B7A34' }
+    };
+  }
+}
+</script>
+</body>
+</html>
